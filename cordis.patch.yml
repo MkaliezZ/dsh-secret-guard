@@ -1,0 +1,6 @@
+- id: dsh-secret-guard
+  name: '@mkaliezz/dsh-secret-guard'
+  config:
+    actionOnFinding: block
+    maxSerializedBytes: 128000
+    protectedTools: []
