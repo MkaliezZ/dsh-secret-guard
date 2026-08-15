@@ -28,3 +28,9 @@ test('fails closed on oversized payload', () => {
   assert.equal(d.action, 'block')
   assert.equal(d.reasonCode, 'PAYLOAD_TOO_LARGE')
 })
+
+test('fails closed when payload has no JSON representation', () => {
+  const d = inspectPayload(undefined)
+  assert.equal(d.action, 'block')
+  assert.equal(d.reasonCode, 'PAYLOAD_UNSERIALIZABLE')
+})

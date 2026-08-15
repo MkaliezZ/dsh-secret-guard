@@ -29,6 +29,7 @@ function walk(value: unknown, path: string, findings: SecretFinding[], seen: Set
 export function inspectPayload(value: unknown, policy: GuardPolicy = { actionOnFinding: 'block', maxSerializedBytes: 128_000 }): GuardDecision {
   let serialized: string
   try { serialized = JSON.stringify(value) } catch { return { action: 'block', findings: [{ kind: 'unserializable-payload', path: '$' }], reasonCode: 'PAYLOAD_UNSERIALIZABLE' } }
+  if (serialized === undefined) return { action: 'block', findings: [{ kind: 'unserializable-payload', path: '$' }], reasonCode: 'PAYLOAD_UNSERIALIZABLE' }
   if (serialized.length > policy.maxSerializedBytes) return { action: 'block', findings: [{ kind: 'payload-too-large', path: '$' }], reasonCode: 'PAYLOAD_TOO_LARGE' }
   const findings: SecretFinding[] = []
   walk(value, '$', findings, new Set())
