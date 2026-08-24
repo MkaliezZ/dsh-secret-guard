@@ -1,6 +1,6 @@
 {
   "name": "@mkaliezz/dsh-secret-guard",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Fail-closed secret-like payload guard for DeepSeek Harness tool calls.",
   "type": "module",
   "main": "lib/index.js",
